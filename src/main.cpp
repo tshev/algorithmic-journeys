@@ -124,7 +124,7 @@ static void BM_shortest_path(benchmark::State& state) {
   graph(6, 1) = 9;
   algo::matrix<int> result(7, 7, 0);
   while (state.KeepRunning())
-    result = algo::power(graph, n - 1, algo::tropic_semigroup_operation<int>{});
+    result = algo::power(graph, n - 1, algo::tropic_semiring_operation<int>{});
 }
 BENCHMARK(BM_shortest_path);
 

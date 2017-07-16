@@ -445,7 +445,7 @@ struct semigroup_closure {
 
 
 template<typename T>
-struct tropic_semigroup_operation {
+struct tropic_semiring_operation {
   matrix<T> operator()(const matrix<T> &a, const matrix<T>&) {
     auto b = a;
     for (size_t i = 0; i < a.rows(); ++i) {
