@@ -2,4 +2,4 @@
 \beamer@sectionintoc {1}{Terminology}{3}{0}{1}
 \beamer@sectionintoc {2}{Programming with concepts}{10}{0}{2}
 \beamer@sectionintoc {3}{Egyptian multiplication}{16}{0}{3}
-\beamer@sectionintoc {4}{Conclusion}{33}{0}{4}
+\beamer@sectionintoc {4}{Conclusion}{43}{0}{4}

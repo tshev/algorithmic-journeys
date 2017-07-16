@@ -1,7 +1,6 @@
 template<typename T, typename N, typename Op>
 requires(Regular(T) && Integer(N) &&
         SemigroupOperation(Op) && Domain<T, Op>)
-inline
 T power(T x, N n, Op op) {
   while(!odd(n)) {
     x = op(x, x);

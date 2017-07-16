@@ -266,15 +266,82 @@ The essence of generic programming lies in the idea of concepts. A concept is a 
 \end{frame}
 
 \begin{frame}[fragile]{Applications of Egyptian Multiplication}
-\begin{block}
   \begin{enumerate}
     \item Multiplication
     \item Pow
     \item Transitive closure
     \item Shortest path
   \end{enumerate}
-\end{block}
 \end{frame}
+
+\begin{frame}[fragile]{Multiplication}
+  \begin{enumerate}
+    \item Multiplication
+    \item Pow
+    \item Transitive closure
+    \item Shortest path
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Egyptian Multiplication for Multiplication}
+\begin{block}{Code}\lstinputlisting[language=c++]{code/13.h}\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Egyptian Multiplication for Pow}
+\begin{block}{Code}\lstinputlisting[language=c++]{code/14.h}\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Egyptian Multiplication for Transitive Closure}
+\begin{block}{Code}\lstinputlisting[language=c++]{code/14.h}\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Egyptian Multiplication for Transitive Closure}
+\begin{block}{Code}\lstinputlisting[language=c++]{code/15.h}\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Egyptian Multiplication for Shortest path}
+\begin{block}{Code}\lstinputlisting[language=c++]{code/16.h}\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Graph}
+\includegraphics[height=5cm]{images/graph.png}
+\end{frame}
+
+\begin{frame}[fragile]{Graph}
+\[
+\begin{bmatrix}
+0 &		6	&	inf	&	3	&	inf	&	inf	&	inf	\\
+inf	&	0	&	inf	&	inf	&	2	&	10	&	inf	\\
+7	&	inf	&	0 &		inf	&	inf	&	inf	&	inf	\\	
+inf	&	inf	&	5	&	0	&	inf	&	4	&	inf		\\
+inf	&	inf	&	inf	&	inf	&	0	&	inf	&	3		\\
+inf	&	inf	&	6	&	inf	&	7	&	0	&	8		\\
+inf &	9	 &	inf	&	inf	&	inf	&	inf	&	0 \\
+\end{bmatrix}
+\]
+\end{frame}
+
+\begin{frame}[fragile]{Shortest distance}
+\[
+\begin{bmatrix}
+0	&	6	&	8	&	3	&	8	&	7	&	11		\\
+23 &	0	&	16 & 26	&	2	&	10	&	5	 \\
+7	&	13 &	0	&	10 & 15	&	14	&	18 \\
+12 & 18	&	5	&	0	&	11	&	4	&	12 \\
+inf	&	12 & 28	&	inf	&	0	&	22 &	3	\\
+13 &	17 &	6	&	16 &	7	&	0	&	8	\\
+32 &	9	&	25	&	inf	&	11 &	19 &	0	\\
+\end{bmatrix}
+\]
+\end{frame}
+
+\begin{frame}{Homework}
+  \begin{enumerate}
+    \item Rewrite functors as algorithms 
+    \item Play around linear recurrences
+  \end{enumerate}
+\end{frame}
+
 
 \section{Conclusion}
 

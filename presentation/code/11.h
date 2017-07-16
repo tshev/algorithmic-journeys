@@ -1,7 +1,6 @@
 template<typename T, typename N, typename Op>
 requires(Regular(T) && Integer(N) &&
          SemigroupOperation(Op) && Domain<T, Op>)
-inline
 T power_accumulate(T x, N n, T r, Op op) {
   while(true) {
     if (odd(n)) {

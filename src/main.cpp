@@ -123,8 +123,10 @@ static void BM_shortest_path(benchmark::State& state) {
   graph(5, 6) = 8;
   graph(6, 1) = 9;
   algo::matrix<int> result(7, 7, 0);
+  std::cout << graph << std::endl;
   while (state.KeepRunning())
     result = algo::power(graph, n - 1, algo::tropic_semiring_operation<int>{});
+  std::cout << result << std::endl;
 }
 BENCHMARK(BM_shortest_path);
 

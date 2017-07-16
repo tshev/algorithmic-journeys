@@ -1,9 +1,12 @@
-\frametitle{Egyptian multiplication - Generic version}
-\begin{block}
-  \begin{enumerate}
-    \item Multiplication
-    \item Pow
-    \item Transitive closure
-    \item Shortest path
-  \end{enumerate}
-\end{block}
+\frametitle{Shortest distance}
+\[
+\begin{bmatrix}
+0^^I&^^I6^^I&^^I8^^I&^^I3^^I&^^I8^^I&^^I7^^I&^^I11^^I^^I\\
+23 &^^I0^^I&^^I16 & 26^^I&^^I2^^I&^^I10^^I&^^I5^^I \\
+7^^I&^^I13 &^^I0^^I&^^I10 & 15^^I&^^I14^^I&^^I18 \\
+12 & 18^^I&^^I5^^I&^^I0^^I&^^I11^^I&^^I4^^I&^^I12 \\
+inf^^I&^^I12 & 28^^I&^^Iinf^^I&^^I0^^I&^^I22 &^^I3^^I\\
+13 &^^I17 &^^I6^^I&^^I16 &^^I7^^I&^^I0^^I&^^I8^^I\\
+32 &^^I9^^I&^^I25^^I&^^Iinf^^I&^^I11 &^^I19 &^^I0^^I\\
+\end{bmatrix}
+\]
