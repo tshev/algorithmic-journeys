@@ -3,6 +3,13 @@
 #include <limits>
 #include <boost/multiprecision/cpp_int.hpp> 
 #include <boost/math/special_functions/gamma.hpp>
+
+#define Integer typename
+#define SemiGroupOperation typename
+#define Regular typename
+#define requires(...)
+
+
 namespace std {
 template<typename T>
 struct reciprocal {
@@ -24,51 +31,44 @@ struct or_op {
     return x | y;
   }
 };
-
 }
-
 namespace algo {
-
-#define Integer typename
-#define SemiGroupOperation typename
-#define Regular typename
-#define requires(...)
-
 template<typename T>
 class matrix {
 public:
   typedef T value_type;
   typedef size_t size_type;
-//private:
+
+private:
   size_type m;
   size_type n;
-  std::vector<T> data;
+  std::vector<T> content;
 public:
-  matrix(size_type m, size_type n, const value_type &value) : m{m}, n{n}, data(m * n, value) {}
+  matrix(size_type m, size_type n, const value_type &value) : m{m}, n{n}, content(m * n, value) {}
   matrix(const matrix &) = default;
   matrix(matrix &&) = default;
   
   matrix& operator=(const matrix &x) {
     m = x.m;
     n = x.n;
-    data = x.data;
+    content = x.content;
     return *this;
   }
 
   matrix& operator=(matrix &&x) {
     m = x.m;
     n = x.n;
-    data = std::move(x.data);
+    content = std::move(x.content);
     return *this;
   }
 
 
   value_type& operator()(size_type i, size_type j) {
-    return data[i * m + j];
+    return content[i * m + j];
   }
 
   const value_type& operator()(size_type i, size_type j) const {
-    return data[i * m + j];
+    return content[i * m + j];
   }
 
   size_type cols() const {
@@ -79,7 +79,45 @@ public:
     return m;
   }
 
+  auto begin() {
+    return std::begin(content);
+  }
+
+  auto end() {
+    return std::end(content);
+  }
+
+  auto begin() const {
+    return std::begin(content);
+  }
+
+  auto end() const {
+    return std::end(content);
+  }
+
+  auto data() {
+    return content.data();
+  }
 };
+}
+
+std::ostream& operator<<(std::ostream  &out, const algo::matrix<int> &x) {
+  for (size_t i = 0; i < x.rows(); ++i) {
+    for (size_t j = 0; j < x.cols(); ++j) {
+       if (x(i, j) == std::numeric_limits<int>::max()) {
+        out << "inf";
+       } else {
+        out << x(i, j);
+       }
+       out  << "\t\t";
+    }
+    out << std::endl;
+  }
+  return out;
+}
+
+namespace algo {
+
 
 using namespace boost::multiprecision;
 const int64_t a1 = (1 << 20);
@@ -346,6 +384,7 @@ struct path_iterator {
   path_iterator(const path_iterator &) = default;
   path_iterator(path_iterator &&) = default;
 
+
   path_iterator& operator=(const path_iterator &x) {
     it = x.it;
     m = x.m;
@@ -377,6 +416,7 @@ struct path_iterator {
   friend inline bool operator!=(const path_iterator &x, const path_iterator &y) {
     return !(x == y);
   }
+
 };
 
 template<typename It>
@@ -410,7 +450,7 @@ struct tropic_semigroup_operation {
     auto b = a;
     for (size_t i = 0; i < a.rows(); ++i) {
       for (size_t j = 0; j < a.cols(); ++j) {
-        auto first = std::begin(a.data);
+        auto first = std::begin(a);
         auto f = make_path_iterator(first, a.rows(), a.cols(), i, j, 0);
         auto l = make_path_iterator(first, a.rows(), a.cols(), i, j, a.rows());
         auto pos = std::min_element(f, l);
@@ -421,20 +461,6 @@ struct tropic_semigroup_operation {
   }
 };
 
-template<typename Matrix>
-void print(const Matrix &x) {
-  for (size_t i = 0; i < x.rows(); ++i) {
-    for (size_t j = 0; j < x.cols(); ++j) {
-       if (x(i, j) == std::numeric_limits<typename Matrix::value_type>::max()) {
-          std::cout << "inf";
-       } else {
-         std::cout << x(i, j);
-       }
-       std::cout  << "\t\t";
-    }
-    std::cout << std::endl;
-  }
-}
 
 void closure_example() {
   matrix<int> graph(3, 3, 0);
@@ -447,42 +473,8 @@ void closure_example() {
   graph(2, 1) = 1;
 
   auto n = graph.rows() - 1;
-  print(graph);
+  std::cout << graph;
   auto paths = power(graph, n, semigroup_closure<int>{});
-  print(paths);
+  std::cout << paths;
 }
-
-
-void shortest_path_example() {
-  auto inf = std::numeric_limits<int>::max();
-  matrix<int> graph(7, 7, inf);
-  graph(0, 0) = 0;
-  graph(1, 1) = 0;
-  graph(2, 2) = 0;
-  graph(3, 3) = 0;
-  graph(4, 4) = 0;
-  graph(5, 5) = 0;
-  graph(6, 6) = 0;
-  graph(0, 1) = 6;
-  graph(0, 3) = 3;
-  graph(1, 4) = 2;
-  graph(1, 5) = 10;
-  
-  graph(2, 0) = 7;
-  graph(3, 2) = 5;
-  graph(3, 5) = 4;
-  graph(4, 6) = 3;
-  graph(5, 2) = 6;
-  graph(5, 4) = 7;
-  graph(5, 6) = 8;
-  graph(6, 1) = 9;
-  
-
-  auto n = graph.rows();
-  print(graph);
-  std::cout << "Graph\n";
-  auto paths = power(graph, n - 1, tropic_semigroup_operation<int>{});
-  print(paths);
-}
-
 }
