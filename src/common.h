@@ -302,9 +302,10 @@ T multiply10(T x, N n) {
 }
 
 template<typename T, typename N, typename Op>
-requires(Regular(T) && Integer(N) && Domain<T, Op>)
+requires(Regular(T) && Integer(N) &&
+         SemigroupOperation(Op) && Domain<T, Op>)
 inline
-T power_accum(T x, N n, T r, Op op) {
+T power_accumulate(T x, N n, T r, Op op) {
   while(true) {
     if (odd(n)) {
       r = op(r, x);
@@ -316,7 +317,8 @@ T power_accum(T x, N n, T r, Op op) {
 }
 
 template<typename T, typename N, typename Op>
-requires(Regular(T) && Integer(N) && Domain<T, Op>)
+requires(Regular(T) && Integer(N) &&
+        SemigroupOperation(Op) && Domain<T, Op>)
 inline
 T power(T x, N n, Op op) {
   while(!odd(n)) {
@@ -324,7 +326,7 @@ T power(T x, N n, Op op) {
     n = half(n);
   }
   if (n == 1) return x;
-  return power_accum(op(x, x), half(n - 1), x, op);
+  return power_accumulate(op(x, x), half(n - 1), x, op);
 }
 
 template<typename T>
