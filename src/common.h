@@ -10,6 +10,21 @@ struct reciprocal {
     return T(1) / x;
   }
 };
+
+template<typename T>
+struct and_op {
+  T operator()(const T &x, const T &y) {
+    return x & y;
+  }
+};
+
+template<typename T>
+struct or_op {
+  T operator()(const T &x, const T &y) {
+    return x | y;
+  }
+};
+
 }
 
 namespace algo {
@@ -347,27 +362,46 @@ struct path_iterator {
   }
 
   typename std::iterator_traits<It>::value_type operator*() {
-    return *(it + i * m + k) + *(it + k * m + j);
+    typedef typename std::iterator_traits<It>::value_type T;
+    auto max = std::numeric_limits<T>::max();
+    auto a = *(it + i * m + k);
+    auto b = *(it + k * m + j);
+    if (a == max || b == max) { return max; }
+    return  a + b;
   }
 
-  friend
-  inline
-  bool operator==(const path_iterator &x, const path_iterator &y) {
+  friend inline bool operator==(const path_iterator &x, const path_iterator &y) {
     return x.k == y.k && x.m == y.m && x.n == y.n && x.i == y.i && x.j == y.j && x.it == y.it;
   }
 
-  friend
-  inline
-  bool operator!=(const path_iterator &x, const path_iterator &y) {
+  friend inline bool operator!=(const path_iterator &x, const path_iterator &y) {
     return !(x == y);
   }
-
 };
 
 template<typename It>
 auto make_path_iterator(It it, size_t m, size_t n, size_t i, size_t j, size_t k) {
   return path_iterator<It>(it, m, n, i, j, k);
 }
+
+
+template<typename T>
+struct semigroup_closure {
+  matrix<T> operator()(const matrix<T> &a, const matrix<T>&) {
+    auto b = a;
+    auto n = a.rows();
+    for (size_t i = 0; i < n; ++i) {
+      for (size_t j = 0; j < n; ++j) {
+        T result = 0;
+        for (size_t k = 0; k < n; ++k) {
+          result = result | (a(i, k) & a(k, j));
+        }
+        b(i, j) = result;
+      }
+    }
+    return b;
+  }
+};
 
 
 template<typename T>
@@ -391,11 +425,33 @@ template<typename Matrix>
 void print(const Matrix &x) {
   for (size_t i = 0; i < x.rows(); ++i) {
     for (size_t j = 0; j < x.cols(); ++j) {
-      std::cout << x(i, j) << " ";
+       if (x(i, j) == std::numeric_limits<typename Matrix::value_type>::max()) {
+          std::cout << "inf";
+       } else {
+         std::cout << x(i, j);
+       }
+       std::cout  << "\t\t";
     }
-    std::cout << "\n";
+    std::cout << std::endl;
   }
 }
+
+void closure_example() {
+  matrix<int> graph(3, 3, 0);
+  graph(0, 0) = 1;
+  graph(1, 1) = 1;
+  graph(2, 2) = 1;
+  graph(0, 1) = 1;
+  graph(1, 0) = 1;
+  graph(1, 2) = 1;
+  graph(2, 1) = 1;
+
+  auto n = graph.rows() - 1;
+  print(graph);
+  auto paths = power(graph, n, semigroup_closure<int>{});
+  print(paths);
+}
+
 
 void shortest_path_example() {
   auto inf = std::numeric_limits<int>::max();
@@ -409,9 +465,24 @@ void shortest_path_example() {
   graph(6, 6) = 0;
   graph(0, 1) = 6;
   graph(0, 3) = 3;
+  graph(1, 4) = 2;
+  graph(1, 5) = 10;
+  
+  graph(2, 0) = 7;
+  graph(3, 2) = 5;
+  graph(3, 5) = 4;
+  graph(4, 6) = 3;
+  graph(5, 2) = 6;
+  graph(5, 4) = 7;
+  graph(5, 6) = 8;
+  graph(6, 1) = 9;
+  
 
-  auto n = graph.rows() - 1;
+  auto n = graph.rows();
+  print(graph);
+  std::cout << "Graph\n";
   auto paths = power(graph, n - 1, tropic_semigroup_operation<int>{});
+  print(paths);
 }
 
 }

@@ -4,11 +4,13 @@
 #include <benchmark/benchmark.h>
 #include "common.h"
 // Benchmark
+/*
 static void BM_baseline(benchmark::State& state) {
   while (state.KeepRunning())
     benchmark::DoNotOptimize(algo::cpp_int(algo::a1) * algo::cpp_int(algo::b1));
 }
 BENCHMARK(BM_baseline);
+*/
 
 // Benchmark
 /*
@@ -36,7 +38,7 @@ static void BM_multiply2(benchmark::State& state) {
 }
 BENCHMARK(BM_multiply2);
 */
-
+/*
 // Benchmark
 static void BM_multiply3(benchmark::State& state) {
   while (state.KeepRunning())
@@ -104,11 +106,16 @@ static void BM_pow(benchmark::State& state) {
     assert(algo::power_group(3, 11, std::multiplies<int>{}) == 177147);
 }
 BENCHMARK(BM_pow);
-
+*/
 static void BM_shortest_path(benchmark::State& state) {
   while (state.KeepRunning())
     algo::shortest_path_example();
 }
 BENCHMARK(BM_shortest_path);
 
-BENCHMARK_MAIN()
+//BENCHMARK_MAIN()
+int main() {
+    //algo::closure_example();
+    algo::shortest_path_example();
+}
+
