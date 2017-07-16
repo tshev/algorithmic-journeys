@@ -1,5 +1,5 @@
 \beamer@endinputifotherversion {3.36pt}
 \beamer@sectionintoc {1}{Terminology}{3}{0}{1}
-\beamer@sectionintoc {2}{Titleformats}{6}{0}{2}
-\beamer@sectionintoc {3}{Elements}{11}{0}{3}
-\beamer@sectionintoc {4}{Conclusion}{28}{0}{4}
+\beamer@sectionintoc {2}{Programming with concepts}{10}{0}{2}
+\beamer@sectionintoc {3}{Egyptian multiplication}{16}{0}{3}
+\beamer@sectionintoc {4}{Conclusion}{35}{0}{4}

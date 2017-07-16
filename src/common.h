@@ -136,7 +136,7 @@ bool odd(T x) {
 
 inline 
 bool odd(cpp_int x) {
-  return (x & 1) == 1;
+  return (x % 2) == 1;
 }
 
 
@@ -145,6 +145,12 @@ inline
 T half(T x) {
   return x >> 1;
 }
+
+inline
+cpp_int half(cpp_int x) {
+  return x / 2;
+}
+
 
 template<typename T>
 bool even(T x) {
@@ -201,7 +207,7 @@ T multiply3(T x, N n) {
 template<typename T, typename N>
 T multiply4(T x, N n) {
   if (n == 1) return x;
-  T r = multiply4(x + x, half(n));
+  T r = multiply4<T, N>(x + x, half(n));
   if (odd(n)) r = r + x;
   return r;
 }
@@ -210,15 +216,15 @@ template<typename T, typename N>
 T multiply_accum5(T x, N n, T r) {
   if (n == 1) return r + x;
   if (odd(n)) {
-    return multiply_accum5(x + x, half(n), r + x);
+    return multiply_accum5<T, N>(x + x, half(n), r + x);
   } else {
-    return multiply_accum5(x + x, half(n), r);
+    return multiply_accum5<T, N>(x + x, half(n), r);
   }
 }
 
 template<typename T, typename N>
 T multiply5(T x, N n) {
-  return multiply_accum5(x, n, T{0});
+  return multiply_accum5<T, N>(x, n, T{0});
 }
 
 template<typename T, typename N>

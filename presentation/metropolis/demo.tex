@@ -1,5 +1,7 @@
 \documentclass[10pt]{beamer}
+\usepackage{listings}
 
+\usepackage{amsmath}
 \usetheme[progressbar=frametitle]{metropolis}
 \usepackage{appendixnumberbeamer}
 
@@ -34,69 +36,174 @@
 \begin{frame}[fragile]{Terminology}
   \begin{enumerate}
     \item Datum
+    \item Value
+    \item Value type
     \item Object
     \item Object type
-    \item Concept
   \end{enumerate}
 \end{frame}
-\begin{frame}[fragile]{Sections}
-  Sections group slides of the same topic
 
-  \begin{verbatim}    \section{Elements}\end{verbatim}
 
-  for which \themename provides a nice progress indicator \ldots
+
+\begin{frame}[fragile]{Datum}
+\begin{block}{Definition}
+A \textbf{datum} is a sequence of bits.
+\end{block}
+
+\begin{block}{Example}
+01000001 is an example of a datum.
+\end{block}
+
 \end{frame}
 
-\section{Titleformats}
-
-\begin{frame}{Metropolis titleformats}
-	\themename supports 4 different titleformats:
-	\begin{itemize}
-		\item Regular
-		\item \textsc{Smallcaps}
-		\item \textsc{allsmallcaps}
-		\item ALLCAPS
-	\end{itemize}
-	They can either be set at once for every title type or individually.
+\begin{frame}[fragile]{Value}
+\begin{block}{Definition}
+A \textbf{value is} a \textbf{datum} together with its interpretation.
+\end{block}
+\begin{block}{Example}
+The \textbf{datum} 01000001 might have the interpretation of the integer 65, or the character “A".
+\end{block}
+\begin{block}{Explanation}
+Every \textbf{value} must be associated with a \textbf{datum} in memory; there is no way to refer to disembodied \textbf{values} in modern programming languages.
+\end{block}
 \end{frame}
 
-{
-    \metroset{titleformat frame=smallcaps}
-\begin{frame}{Small caps}
-	This frame uses the \texttt{smallcaps} titleformat.
-
-	\begin{alertblock}{Potential Problems}
-		Be aware, that not every font supports small caps. If for example you typeset your presentation with pdfTeX and the Computer Modern Sans Serif font, every text in smallcaps will be typeset with the Computer Modern Serif font instead.
-	\end{alertblock}
+\begin{frame}[fragile]{Value type}
+\begin{block}{Definition}
+A \textbf{value type} is a set of values sharing a common interpretation.
+\end{block}
 \end{frame}
-}
 
-{
-\metroset{titleformat frame=allsmallcaps}
-\begin{frame}{All small caps}
-	This frame uses the \texttt{allsmallcaps} titleformat.
-
-	\begin{alertblock}{Potential problems}
-		As this titleformat also uses smallcaps you face the same problems as with the \texttt{smallcaps} titleformat. Additionally this format can cause some other problems. Please refer to the documentation if you consider using it.
-
-		As a rule of thumb: Just use it for plaintext-only titles.
-	\end{alertblock}
+\begin{frame}[fragile]{Object}
+\begin{block}{Definition}
+An \textbf{object} is a collection of bits in memory that contain a \textbf{value} of a given \textbf{value type}.
+\end{block}
+\begin{block}{Explanation}
+An \textbf{object} is immutable if the value never changes, and mutable otherwise. An object is unrestricted if it can contain any \textbf{value} of its \textbf{value type}.
+\end{block}
 \end{frame}
-}
 
-{
-\metroset{titleformat frame=allcaps}
-\begin{frame}{All caps}
-	This frame uses the \texttt{allcaps} titleformat.
 
-	\begin{alertblock}{Potential Problems}
-		This titleformat is not as problematic as the \texttt{allsmallcaps} format, but basically suffers from the same deficiencies. So please have a look at the documentation if you want to use it.
-	\end{alertblock}
+\begin{frame}[fragile]{Object type}
+\begin{block}{Definition}
+An \textbf{object type} is a uniform method of storing and retrieving \textbf{values} of a given \textbf{value type} from a particular \textbf{object} when given its address.
+\end{block}
 \end{frame}
-}
 
-\section{Elements}
 
+\section{Programming with concepts}
+
+\begin{frame}{Basic idea}
+\begin{block}{}
+The essence of generic programming lies in the idea of concepts. A concept is a way of describing a family of related object types.
+\end{block}
+\begin{center}
+    \begin{tabular}{ | p{1.5cm} | l | l | p{3cm} |}
+    \hline
+    \textbf{Natural Science} & \textbf{Mathematics} & \textbf{Programming} & \textbf{Programming Examples} \\ \hline
+      genus & theory & concept & Integral, Character \\
+      species & model & type or class & uint8\_t, char \\
+      invidiual & element & instance  & 01000001(65, 'A') \\
+    \hline
+    \end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}{Notion of Regularity}
+\begin{block}{Operation}
+  \begin{enumerate}
+    \item Copy construction
+    \item Assignment
+    \item Equality
+    \item Destruction
+  \end{enumerate}
+\end{block}
+\begin{block}{Semantic}
+    $$\forall a ~ \forall b ~ \forall c : T~a(b)  \implies(b = c \implies a = c)$$
+    $$\forall a ~ \forall b ~ \forall c : a \leftarrow b  \implies(b = c \implies a = c)$$
+    $$\forall f \in RegularFunction: a = b \implies f(a) = f(b)$$
+\end{block}
+\end{frame}
+
+\begin{frame}{More examples of concepts}
+\begin{enumerate}
+  \item Regular Type
+  \item Semiegular Type
+  \item Functional Procedure
+  \item Homogeneous Function
+  \item Homogeneous Predicate
+  \item Semiring
+  \item Sequence
+  \item Totally Ordered
+  \item Input Iterator
+  \item Forfward Iterator
+  \item Bidirectional Iterator
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Properties}
+\begin{enumerate}
+  \item Associative
+  \item Distributive
+  \item Transitive
+  \item Semiegular Type
+  \item Functional Procedure
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Techniques}
+\begin{enumerate}
+  \item Transformation-action duality
+  \item Operation-accumulation procedure duality
+  \item Memory adaptivity
+  \item Reduction to constrained subproblem 
+\end{enumerate}
+\end{frame}
+
+\section{Egyptian multiplication}
+
+\begin{frame}{Simple algorithm}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \centering{3 * 8}
+      \begin{table}
+        \begin{tabular}{l|r}
+          \toprule
+          x & y\\
+          \midrule
+          3 & 8\\ \hline
+          6 & 7\\ \hline
+          9 & 6\\ \hline
+          12 & 5\\ \hline
+          15 & 4\\ \hline
+          18 & 3\\ \hline
+          21 & 2\\ \hline
+          24 & 1\\ \hline
+          \bottomrule
+        \end{tabular}
+      \end{table}
+
+    \column{0.5\textwidth}
+      \centering{8 * 3}
+      \begin{table}
+        \begin{tabular}{l|r}
+          \toprule
+          x & y\\
+          \midrule
+          8 & 3\\ \hline
+          16  & 2\\ \hline
+          24 & 1\\ \hline
+          \bottomrule
+        \end{tabular}
+      \end{table}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]{Simple idea}
+\lstinputlisting[language=Python]{code/intersect.py}
+
+\end{frame}
 \begin{frame}[fragile]{Typography}
       \begin{verbatim}The theme provides sensible defaults to
 \emph{emphasize} text, \alert{accent} parts
@@ -291,17 +398,11 @@ or show \textbf{bold} results.\end{verbatim}
 \section{Conclusion}
 
 \begin{frame}{Summary}
-
-  Get the source of this theme and the demo presentation from
-
-  \begin{center}\url{github.com/matze/mtheme}\end{center}
-
-  The theme \emph{itself} is licensed under a
-  \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
-  Attribution-ShareAlike 4.0 International License}.
-
-  \begin{center}\ccbysa\end{center}
-
+  \begin{enumerate}
+    \item Concreteness costs
+    \item Abstracting algorithms to their most general setting without losing efficiency
+    \item Know your algorithms
+  \end{enumerate}
 \end{frame}
 
 {\setbeamercolor{palette primary}{fg=black, bg=yellow}
