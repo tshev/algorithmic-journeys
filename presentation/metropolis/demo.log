@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2017.3.23)  16 JUL 2017 14:30
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2017.3.23)  16 JUL 2017 14:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1742,9 +1742,211 @@ Overfull \hbox (0.4pt too wide) in paragraph at lines 200--200
 ]
 \openout4 = `demo.vrb'.
 
- (./demo.vrb
+ (./demo.vrb (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+) (./code/intersect.py))
+Overfull \hbox (0.4pt too wide) in paragraph at lines 214--214
+[][]  
+ []
 
-! Package Listings Error: File `code/intersect(.py)' not found.
+[18
 
-Type X to quit or <RETURN> to proceed,
-or ent
+]
+\openout4 = `demo.vrb'.
+
+ (./demo.vrb)
+Overfull \hbox (0.4pt too wide) in paragraph at lines 224--224
+[][]  
+ []
+
+[19
+
+]
+
+LaTeX Font Warning: Font shape `EU1/FiraMono(0)/m/it' undefined
+(Font)              using `EU1/FiraMono(0)/m/n' instead on input line 239.
+
+
+Overfull \hbox (0.4pt too wide) in paragraph at lines 239--239
+[][]  
+ []
+
+[20
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 261--261
+[][]  
+ []
+
+[21
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 268--268
+[][]  
+ []
+
+[22
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 268--268
+[][]  
+ []
+
+[23
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 268--268
+[][]  
+ []
+
+[24
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 268--268
+[][]  
+ []
+
+[25
+
+]
+\c@density=\count296
+
+Overfull \hbox (0.4pt too wide) in paragraph at lines 294--294
+[][]  
+ []
+
+[26
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 309--309
+[][]  
+ []
+
+[27
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 345--345
+[][]  
+ []
+
+[28
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 350--350
+[][]  
+ []
+
+[29
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 366--366
+[][]  
+ []
+
+[30
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 387--387
+[][]  
+ []
+
+[31
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 392--392
+[][]  
+ []
+
+[32
+
+]
+\openout4 = `demo.vrb'.
+
+ (./demo.vrb)
+Overfull \hbox (0.4pt too wide) in paragraph at lines 399--399
+[][]  
+ []
+
+[33
+
+]
+
+LaTeX Warning: Citation `knuth92' on page 34 undefined on input line 404.
+
+
+LaTeX Warning: Citation `ConcreteMath' on page 34 undefined on input line 404.
+
+
+LaTeX Warning: Citation `Simpson' on page 34 undefined on input line 404.
+
+
+LaTeX Warning: Citation `Er01' on page 34 undefined on input line 404.
+
+
+LaTeX Warning: Citation `greenwade93' on page 34 undefined on input line 404.
+
+
+Overfull \hbox (0.4pt too wide) in paragraph at lines 404--404
+[][]  
+ []
+
+[34
+
+] [35
+
+]
+Overfull \hbox (0.4pt too wide) in paragraph at lines 414--414
+[][]  
+ []
+
+[36
+
+] [37
+
+]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\translate ' on input line 422.
+
+\openout4 = `demo.vrb'.
+
+(./demo.vrb) [38
+
+]
+No file demo.bbl.
+[39
+
+]
+\tf@nav=\write6
+\openout6 = `demo.nav'.
+
+\tf@toc=\write7
+\openout7 = `demo.toc'.
+
+\tf@snm=\write8
+\openout8 = `demo.snm'.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 442.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 442.
+ (./demo.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 442.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 442.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 442.
+ ) 
+Here is how much of TeX's memory you used:
+ 47610 strings out of 495561
+ 1067284 string characters out of 6186972
+ 1191430 words of memory out of 5000000
+ 50089 multiletter control sequences out of 15000+600000
+ 10040 words of font info for 80 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 71i,16n,102p,10417b,2105s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on demo.pdf (39 pages).
