@@ -120,8 +120,8 @@ namespace algo {
 
 
 using namespace boost::multiprecision;
-const int64_t a1 = (1 << 20);
-const int64_t b1 = (1 << 20);
+const cpp_int a1 = (1 << 20);
+const cpp_int b1 = (1 << 20);
 const auto c1 = a1 * b1;
 
 const int64_t a2 = (1LL << 30) + 1;
@@ -258,7 +258,6 @@ T multiply7(T x, N n) {
 
 template<typename T, typename N>
 inline
-constexpr
 T multiply_accum8(T x, N n, T r) {
   while(true) {
     if (odd(n)) {
@@ -272,14 +271,12 @@ T multiply_accum8(T x, N n, T r) {
 
 template<typename T, typename N>
 inline
-constexpr
 T multiply8(T x, N n) {
   return multiply_accum8(x, n, T{0});
 }
 
 template<typename T, typename N>
 inline
-constexpr
 T multiply9(T x, N n) {
   if (n == 1) return x;
   --n;
@@ -288,7 +285,6 @@ T multiply9(T x, N n) {
 
 template<typename T, typename N>
 inline
-constexpr
 T multiply10(T x, N n) {
   while(!odd(n)) {
     x += x;
@@ -302,7 +298,6 @@ T multiply10(T x, N n) {
 template<typename T, typename N, typename Op>
 requires(Regular(T) && Integer(N) && Domain<T, Op>)
 inline
-constexpr
 T power_accum(T x, N n, T r, Op op) {
   while(true) {
     if (odd(n)) {
@@ -317,7 +312,6 @@ T power_accum(T x, N n, T r, Op op) {
 template<typename T, typename N, typename Op>
 requires(Regular(T) && Integer(N) && Domain<T, Op>)
 inline
-constexpr
 T power(T x, N n, Op op) {
   while(!odd(n)) {
     x = op(x, x);
@@ -351,7 +345,6 @@ std::reciprocal<T> inverse_operation(std::multiplies<T>) {
 template<typename T, typename N, typename Op>
 requires(Regular(T) && Integer(N) && Domain<T, Op>)
 inline
-constexpr
 T power_monoid(T x, N n, Op op) {
   if (n == 0) return identify_element(op);
   return power(x, n, op);
@@ -361,7 +354,6 @@ T power_monoid(T x, N n, Op op) {
 template<typename T, typename N, typename Op>
 requires(Regular(T) && Integer(N) && Domain<T, Op>)
 inline
-constexpr
 T power_group(T x, N n, Op op) {
   if (n < 0) {
     n = -n;

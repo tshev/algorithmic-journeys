@@ -9,6 +9,7 @@ static void BM_baseline(benchmark::State& state) {
     benchmark::DoNotOptimize(algo::cpp_int(algo::a1) * algo::cpp_int(algo::b1));
 }
 BENCHMARK(BM_baseline);
+/*
 
 // Benchmark
 static void BM_multiply0(benchmark::State& state) {
@@ -18,7 +19,6 @@ static void BM_multiply0(benchmark::State& state) {
 BENCHMARK(BM_multiply0);
 
 // Benchmark
-/*
 static void BM_multiply1(benchmark::State& state) {
   while (state.KeepRunning())
     assert(algo::multiply1(algo::a1, algo::b1) == algo::c1);

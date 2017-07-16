@@ -1,2 +1,2 @@
 all:
-	g++ main.cpp -std=c++14  -Wall -pedantic -pthread  -fno-rtti -O3 -fno-omit-frame-pointer -lbenchmark 
+	g++ main.cpp -std=c++1z -O3 -Wall -pedantic -pthread  -fno-rtti -fno-omit-frame-pointer -lbenchmark 
